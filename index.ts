@@ -1,13 +1,15 @@
 import express, { Express, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 
+import { runHighLoadedOps } from './src/service';
+
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
+app.get('/', async (req: Request, res: Response) => {
+  res.send(await runHighLoadedOps());
 });
 
 app.listen(port, () => {
