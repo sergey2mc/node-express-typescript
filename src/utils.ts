@@ -1,5 +1,5 @@
 export function heavyCalculations(complexityLevel: number): number {
-  const before = process.hrtime();
+  const start = process.hrtime.bigint();
   let obj = { a: 1 } as any;
 
   for (let i = 0; i < complexityLevel; i++) {
@@ -8,5 +8,20 @@ export function heavyCalculations(complexityLevel: number): number {
 
   const str = JSON.stringify(obj);
   const res = JSON.parse(str);
-  return Number(process.hrtime(before).join('.'));
+
+  const end = process.hrtime.bigint();
+  return convertHrtime(end - start).seconds;
+}
+
+export function convertHrtime(hrtime) {
+  const nanoseconds = hrtime;
+  const number = Number(nanoseconds);
+  const milliseconds = number / 1000000;
+  const seconds = number / 1000000000;
+
+  return {
+    seconds,
+    milliseconds,
+    nanoseconds
+  };
 }
