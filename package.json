@@ -9,11 +9,14 @@
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "dependencies": {
+    "bluebird": "^3.7.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mississippi": "^4.0.0"
+    "mississippi": "^4.0.0",
+    "piscina": "^3.2.0"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.37",
     "@types/concat-stream": "^2.0.0",
     "@types/duplexify": "^3.6.1",
     "@types/end-of-stream": "^1.4.1",
